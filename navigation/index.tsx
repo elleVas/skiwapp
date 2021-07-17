@@ -8,7 +8,6 @@ import { createStackNavigator, HeaderBackground } from '@react-navigation/stack'
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 import { Octicons, MaterialCommunityIcons} from '@expo/vector-icons'
-//import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
