@@ -7,9 +7,10 @@ import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/
 import { createStackNavigator, HeaderBackground } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
-import { Octicons, MaterialCommunityIcons} from '@expo/vector-icons'
+import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons'
 
 import NotFoundScreen from '../screens/NotFoundScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
 import { RootStackParamList } from '../types';
 import MainTabNavigator from './MainNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -50,20 +51,30 @@ function RootNavigator() {
           title: 'SkiwApp',
           headerRight: () => (
             <View style={{
-              backgroundColor:Colors.light.tint,
-              flexDirection:'row', 
-              width:60, 
-              justifyContent:'space-between',
-              marginRight:10,
+              backgroundColor: Colors.light.tint,
+              flexDirection: 'row',
+              width: 60,
+              justifyContent: 'space-between',
+              marginRight: 10,
             }}>
-              <Octicons name="search" size={22} color='white'/>
-              <MaterialCommunityIcons name="dots-vertical" size={22} color='white'/>
+              <Octicons name="search" size={22} color='white' />
+              <MaterialCommunityIcons name="dots-vertical" size={22} color='white' />
             </View>
           )
         }}
-        
+
       />
+      <Stack.Screen
+        name="ChatRoom"
+        component={ChatRoomScreen}
+        options={{ title: (props) => {
+           console.log(props);
+          return 'Chat Room';
+        } }}
+      />
+
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+
     </Stack.Navigator>
   );
 }

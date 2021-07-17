@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import ChatRooms from "../../constants/data/ChatRooms";
 import { ChatRoom } from "../../types";
 import styles from "./style";
 import moment from "moment";
+import { useNavigation } from "@react-navigation/native";
 
 export type ChatListItemProps = {
     chatRoom: ChatRoom;
@@ -11,12 +12,20 @@ export type ChatListItemProps = {
 
 const ChatListItem = (props: ChatListItemProps) => {
     const { chatRoom } = props;
+
+    const navigation = useNavigation();
+
     const user = chatRoom.users[1];
 
-    console.log(chatRoom.users[1]);
+  
     const dateCreate = new Date(Date.parse(chatRoom.lastMessage.createdAt));
+    const onClick = () => {
+       navigation.navigate('ChatRoom', {id: chatRoom.id});
+    }
+
     return (
-        <View style={styles.container}>
+        <TouchableWithoutFeedback onPress={onClick}>
+              <View style={styles.container}>
             <View style={styles.leftContainer}>
                 <Image source={{ uri: user.imageUri }} style={styles.avatar} />
                
@@ -31,6 +40,8 @@ const ChatListItem = (props: ChatListItemProps) => {
                 </Text>
            {/* <Text style={styles.time}>{dateCreate.toLocaleDateString()}</Text>*/}
         </View>
+        </TouchableWithoutFeedback>
+  
     )
 
 
