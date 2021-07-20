@@ -4,10 +4,10 @@
  *
  */
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
-import { createStackNavigator, HeaderBackground } from '@react-navigation/stack';
+import { createStackNavigator, HeaderBackButton, HeaderBackground } from '@react-navigation/stack';
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
-import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { Octicons, MaterialCommunityIcons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons'
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ChatRoomScreen from '../screens/ChatRoomScreen';
@@ -16,6 +16,9 @@ import MainTabNavigator from './MainNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import Colors from '../constants/Colors';
 import { View } from '../components/Themed';
+
+import LogoTitle from '../components/LogoTitle/logoTitle';
+
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
     <NavigationContainer
@@ -67,10 +70,38 @@ function RootNavigator() {
       <Stack.Screen
         name="ChatRoom"
         component={ChatRoomScreen}
-        options={{ title: (props) => {
-           console.log(props);
-          return 'Chat Room';
-        } }}
+      /*  options={({ navigation, route }) => ({
+          title: route.params.name,
+          headerTitle: props => <LogoTitle {...route} />,
+          headerTitleAlign: 'center'
+        })}*/
+        options={({ route }) => ({ 
+         // title: route.params.name,
+         headerTitle: props => <LogoTitle {...route} />,
+         headerTitleAlign: 'center',
+        /*  headerLeft: (props) => (
+            <HeaderBackButton
+              {...props}
+              onPress={() => {
+                // Do something
+              }}
+            />
+          ),*/
+          headerRight: () =>(
+            <View style={{
+              backgroundColor: Colors.light.tint,
+              flexDirection: 'row',
+              width: 100,
+              justifyContent: 'space-between',
+              marginRight: 10,
+            }}>
+               <FontAwesome5 name="video" size={22} color={'white'}></FontAwesome5>
+              <MaterialIcons name="call" size={22} color={'white'}></MaterialIcons>
+              <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'}></MaterialCommunityIcons>
+            
+            </View>
+          )
+      })}
       />
 
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />

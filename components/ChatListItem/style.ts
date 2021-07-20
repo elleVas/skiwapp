@@ -20,6 +20,12 @@ const styles = StyleSheet.create({
         marginRight: 15,
        
     },
+    avatarSmall: {
+        width: 30,
+        height: 30,
+        borderRadius: 50,
+       
+    },
     username:{
         fontWeight: "bold",
         fontSize: 16,

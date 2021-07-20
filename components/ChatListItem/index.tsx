@@ -20,7 +20,11 @@ const ChatListItem = (props: ChatListItemProps) => {
   
     const dateCreate = new Date(Date.parse(chatRoom.lastMessage.createdAt));
     const onClick = () => {
-       navigation.navigate('ChatRoom', {id: chatRoom.id});
+       navigation.navigate('ChatRoom', {
+           id: chatRoom.id, 
+           name:user.name,
+           img: user.imageUri
+        });
     }
 
     return (
