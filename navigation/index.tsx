@@ -79,6 +79,7 @@ function RootNavigator() {
          // title: route.params.name,
          headerTitle: props => <LogoTitle {...route} />,
          headerTitleAlign: 'center',
+         //TODO CUSTOMIZE BTN BACK
         /*  headerLeft: (props) => (
             <HeaderBackButton
               {...props}
@@ -95,6 +96,7 @@ function RootNavigator() {
               justifyContent: 'space-between',
               marginRight: 10,
             }}>
+             {/*TODO CREATE ACTIONS FOR BTN*/}
                <FontAwesome5 name="video" size={22} color={'white'}></FontAwesome5>
               <MaterialIcons name="call" size={22} color={'white'}></MaterialIcons>
               <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'}></MaterialCommunityIcons>
