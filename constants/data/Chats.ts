@@ -31,7 +31,7 @@ export default {
 		createdAt: '2020-10-03T14:49:40.000Z',
 		user: {
 			id: 'u2',
-			name: '',
+			name: 'Gio',
 		},
 	}, {
 		id: 'm4',
@@ -52,7 +52,7 @@ export default {
 	}, {
 		id: 'm6',
 		content: 'It is a bit tough, as I have 2 specializations. How about yours? Do you enjoy it?',
-		createdAt: '2020-10-03T14:49:00.000Z',
+		createdAt: '2021-07-21T14:49:00.000Z',
 		user: {
 			id: 'u2',
 			name: 'Gio',
@@ -60,7 +60,7 @@ export default {
 	}, {
 		id: 'm7',
 		content: 'Big Data is really interesting. Cannot wait to go through all the material.',
-		createdAt: '2020-10-03T14:53:00.000Z',
+		createdAt: '2021-07-21T17:33:00.000Z',
 		user: {
 			id: 'u1',
 			name: 'Lele',

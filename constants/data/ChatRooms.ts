@@ -140,6 +140,6 @@ export default [{
   lastMessage: {
     id: 'm9',
     content: 'Meet me at the same place',
-    createdAt: '2020-09-25T15:40:00.000Z',
+    createdAt: '2021-07-21T15:40:00.000Z',
   },
 }]
