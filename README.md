@@ -1,2 +1,2 @@
 # skiwapp
-WhatsApp clone, whit react native
+WhatsApp clone, whit React Native,TypeScript, Expo CLI, GraphQL, AWS
