@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-skchat-dev-163244-authRole",
+      "UnauthRoleArn": "arn:aws:iam::327781381784:role/amplify-skchat-dev-163244-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::327781381784:role/amplify-skchat-dev-163244-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-skchat-dev-163244-deployment",
+      "UnauthRoleName": "amplify-skchat-dev-163244-unauthRole",
+      "StackName": "amplify-skchat-dev-163244",
+      "StackId": "arn:aws:cloudformation:eu-west-2:327781381784:stack/amplify-skchat-dev-163244/afcac570-eaf9-11eb-ad7b-0248771c6626",
+      "AmplifyAppId": "d16z5qudu8sqya"
+    },
+    "categories": {
+      "auth": {
+        "skchatd6f03728": {}
+      }
+    }
+  }
+}
