@@ -8,16 +8,15 @@ import { createStackNavigator, HeaderBackButton, HeaderBackground } from '@react
 import * as React from 'react';
 import { ColorSchemeName } from 'react-native';
 import { Octicons, MaterialCommunityIcons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons'
-
-import NotFoundScreen from '../screens/NotFoundScreen';
-import ChatRoomScreen from '../screens/ChatRoomScreen';
 import { RootStackParamList } from '../types';
 import MainTabNavigator from './MainNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 import Colors from '../constants/Colors';
 import { View } from '../components/Themed';
-
 import LogoTitle from '../components/LogoTitle/logoTitle';
+import ContactsScreen from '../screens/ContactsScreen';
+import NotFoundScreen from '../screens/NotFoundScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -105,6 +104,9 @@ function RootNavigator() {
           )
       })}
       />
+         <Stack.Screen name="Contacts"
+         component={ContactsScreen} 
+         />
 
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
 

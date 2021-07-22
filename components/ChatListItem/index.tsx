@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image, TouchableWithoutFeedback } from "react-native";
 import ChatRooms from "../../constants/data/ChatRooms";
 import { ChatRoom } from "../../types";
-import styles from "./style";
+import styles from "./styles";
 import moment from "moment";
 import { useNavigation } from "@react-navigation/native";
 
