@@ -5,7 +5,8 @@ import Colors from "../../constants/Colors";
 const style = StyleSheet.create({
     container: {
         padding: 10,
-      //  backgroundColor: '#e5e5e5',
+        //revoce eccessive space to top not sure is better solutions
+        marginBottom:12
         
     },
     messageBox: {
