@@ -17,8 +17,6 @@ import { Authenticator, withAuthenticator } from 'aws-amplify-react-native';
 import Amplify from 'aws-amplify'
 import config from './src/aws-exports'
 import { useEffect } from 'react';
-// @ts-ignore
-import backgroundImg from "./assets/images/shh.png";
 
 const MySectionHeader = Object.assign({}, AmplifyTheme.sectionHeader, { background: 'blue' });
 const MyTheme = Object.assign({}, AmplifyTheme, { sectionHeader: MySectionHeader });
