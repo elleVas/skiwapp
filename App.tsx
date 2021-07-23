@@ -11,17 +11,26 @@ import { Auth, API, graphqlOperation } from 'aws-amplify'
 import { getUser } from './src/graphql/queries'
 import { createUser } from './src/graphql/mutations'
 // @ts-ignore
-import { withAuthenticator } from 'aws-amplify-react-native';
+import { AmplifyTheme } from 'aws-amplify-react-native';
+// @ts-ignore
+import { Authenticator, withAuthenticator } from 'aws-amplify-react-native';
 import Amplify from 'aws-amplify'
 import config from './src/aws-exports'
 import { useEffect } from 'react';
 // @ts-ignore
 import backgroundImg from "./assets/images/shh.png";
+
+const MySectionHeader = Object.assign({}, AmplifyTheme.sectionHeader, { background: 'blue' });
+const MyTheme = Object.assign({}, AmplifyTheme, { sectionHeader: MySectionHeader });
+
+
 Amplify.configure(config)
 
-const randoImages = [
-  "./assets/images/shh.png","./assets/images/shh.png"
-];
+const randomImages = [
+  'https://images-eu.ssl-images-amazon.com/images/I/41ue1o6EfWL.png',
+  'https://images-eu.ssl-images-amazon.com/images/I/01oKowc90VL.png',
+  'https://is2-ssl.mzstatic.com/image/thumb/Purple30/v4/e1/27/30/e127305d-97be-eb78-f9c7-a3dc9ac061a9/source/60x60bb.jpg',
+]
 
 
 
@@ -30,10 +39,7 @@ function App() {
   const colorScheme = useColorScheme();
 
   const getRandomImage = () => {
-    console.log("QUI QUI QUI ",randoImages.length);
-    let test = randoImages[Math.floor(Math.random() * randoImages.length)];
-    console.log("QUI QUI QUI ",test);
-    return test;
+    return  randomImages[Math.floor(Math.random() * randomImages.length)];
   }
 
   //run this snippet only when app is first mounted
@@ -94,4 +100,15 @@ function App() {
 }
 
 
-export default withAuthenticator(App)
+export default withAuthenticator(App, 
+  {
+   // TODO CREATE custom componet for login
+    // Render a sign out button once logged in
+   // includeGreetings: true, 
+    // Show only certain components
+   // authenticatorComponents: [MyComponents],
+    // display federation/social provider buttons 
+   // federated: {myFederatedConfig}, 
+    // customize the UI/styling
+    //theme: {MyTheme}
+});
