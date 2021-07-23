@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "skchat",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authskchatd6f03728",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
