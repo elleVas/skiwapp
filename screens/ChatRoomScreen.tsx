@@ -5,8 +5,10 @@ import { FlatList } from "react-native-gesture-handler";
 
 import ChatRoomData from "../constants/data/Chats";
 import ChatMessage from "../components/ChatMessage";
-import backgroundImg from "../assets/images/backgroundImg.png";
+
 import InputBox from "../components/InputBox";
+// @ts-ignore
+import backgroundImg from "../assets/images/backgroundImg.png";
 
 const ChatRoomScreen = () => {
     const route = useRoute();

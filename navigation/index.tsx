@@ -50,7 +50,7 @@ function RootNavigator() {
         name="Root"
         component={MainTabNavigator}
         options={{
-          title: 'SkiwApp',
+          title: 'hāmau',
           headerRight: () => (
             <View style={{
               backgroundColor: Colors.light.tint,
