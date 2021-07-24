@@ -105,6 +105,7 @@ const ContactListItem = (props: ContactListItemProps) => {
                     }
                     )
                 )
+                console.log("chatroom created");
                 navigation.navigate('ChatRoom', {
                     id: newChatRoom.id,
                     name: "Hardcoded name"
