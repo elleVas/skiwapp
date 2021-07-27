@@ -10,8 +10,6 @@ import { Auth } from '@aws-amplify/auth';
 import { getUser } from './queries/queries';
 import { useState } from 'react';
 
-//static data for exampe chat
-//import ChatRooms from '../constants/data/ChatRooms';
 
 export default function ChatsScreen() {
   

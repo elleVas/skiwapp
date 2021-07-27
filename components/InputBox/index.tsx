@@ -6,17 +6,50 @@ import styles from "./styles";
 import { MaterialCommunityIcons, FontAwesome5, Entypo, Fontisto } from "@expo/vector-icons";
 import { TouchableOpacityComponent } from "react-native";
 
+import { API, graphqlOperation } from "@aws-amplify/api";
+import { Auth } from '@aws-amplify/auth';
+import { createMessage } from "../../src/graphql/mutations";
+import { useEffect } from "react";
 
-const InputBox = () => {
+const InputBox = (props) => {
+    const { chatRoomID } = props;
     const [message, setMessage] = useState('');
+    const [myUserId, setMyUserId] = useState(null);
+
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const userInfo = await Auth.currentAuthenticatedUser();
+            setMyUserId(userInfo.attributes.sub)
+        }
+        fetchUser();
+    }, [])
+
+
+
     const onMicrophomePress = () => {
         //open microphone for message and record
         //after send vocal to backend
         console.warn('Microphone');
     }
-    const onSendPress = () => {
+    const onSendPress = async () => {
         console.warn(`Sending: ${message}`);
         //send message to backend
+        try {
+            await API.graphql(
+                graphqlOperation(
+                    createMessage, {
+                    input: {
+                        content: message,
+                        userID: myUserId,
+                        chatRoomID: chatRoomID
+                    }
+                }
+                )
+            )
+        } catch (error) {
+            console.log(error);
+        }
         setMessage('');
     }
     const onPress = () => {
