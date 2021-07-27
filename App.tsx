@@ -45,7 +45,6 @@ function App() {
     const fetchUser = async () => {
       // get Authenticated user from auth
       const userInfo = await Auth.currentAuthenticatedUser({ bypassCache: true });
-      console.log(userInfo)
       if (userInfo) {
 
         // get the user from backend with the user id from Auth
@@ -68,7 +67,7 @@ function App() {
             status:'Hey, I am here, Shhh!'
           }
 
-          console.log(newUser)
+         
           // if there is no user in DB with id, then create one
           const createUsr = await API.graphql(
             graphqlOperation(

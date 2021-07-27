@@ -11,7 +11,7 @@ import { Auth } from '@aws-amplify/auth';
 import { createMessage } from "../../src/graphql/mutations";
 import { useEffect } from "react";
 
-const InputBox = (props) => {
+const InputBox = (props: { chatRoomID: string; }) => {
     const { chatRoomID } = props;
     const [message, setMessage] = useState('');
     const [myUserId, setMyUserId] = useState(null);
@@ -33,7 +33,7 @@ const InputBox = (props) => {
         console.warn('Microphone');
     }
     const onSendPress = async () => {
-        console.warn(`Sending: ${message}`);
+       // console.warn(`Sending: ${message}`);
         //send message to backend
         try {
             await API.graphql(

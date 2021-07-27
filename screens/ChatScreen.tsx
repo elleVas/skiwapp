@@ -12,7 +12,6 @@ import { useState } from 'react';
 
 
 export default function ChatsScreen() {
-  
   const [chatRooms, setChatRooms] = useState([]);
 
   useEffect(() => {
@@ -26,9 +25,7 @@ export default function ChatsScreen() {
             }
           )
         )
-        console.log("HEHEHEHEHEHEEHEHEHEHEHEHEHEHEHEH");
         setChatRooms(userData.data.getUser.chatRoomUser.items);
-        console.log(userData.data.getUser.chatRoomUser.items);
       } catch (error) {
         console.log(error);
       }
