@@ -8,7 +8,7 @@ import { TouchableOpacityComponent } from "react-native";
 
 import { API, graphqlOperation } from "@aws-amplify/api";
 import { Auth } from '@aws-amplify/auth';
-import { createMessage } from "../../src/graphql/mutations";
+import { createMessage, updateChatRoom } from "../../src/graphql/mutations";
 import { useEffect } from "react";
 
 const InputBox = (props: { chatRoomID: string; }) => {
@@ -32,21 +32,43 @@ const InputBox = (props: { chatRoomID: string; }) => {
         //after send vocal to backend
         console.warn('Microphone');
     }
+    //update chat room with last message
+    const updateChatRoomLastMessage = async (messageID: string) => {
+      try {
+          await API.graphql(
+              graphqlOperation
+              (updateChatRoom, {
+                  input: {
+                      id:chatRoomID,
+                      lastMessageId: messageID,
+                  }
+              }
+              )
+            );
+      } catch (error) {
+          console.log(error);
+      }
+    }
+
+    //onpress send button message
     const onSendPress = async () => {
        // console.warn(`Sending: ${message}`);
         //send message to backend
         try {
-            await API.graphql(
+         const newMessageData =   await API.graphql(
                 graphqlOperation(
                     createMessage, {
                     input: {
                         content: message,
                         userID: myUserId,
-                        chatRoomID: chatRoomID
+                        chatRoomID: chatRoomID,
+                        read: false
                     }
                 }
                 )
             )
+           
+         await updateChatRoomLastMessage(newMessageData.data.createMessage.id);
         } catch (error) {
             console.log(error);
         }

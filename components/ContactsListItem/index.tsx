@@ -65,10 +65,13 @@ const ContactListItem = (props: ContactListItemProps) => {
             } else {
                 //if not exist create new chat room
                 // 1 create new chat room
+                //lastmessage id is dummy we need for create but is fake
                 const newChatRoomData = await API.graphql(
                     graphqlOperation(
                         createChatRoom, {
-                        input: {}
+                        input: {
+                            lastMessageId:"zz739c77-b20b-485f-85f8-21feb0b97b6d"
+                        }
                     }
                     )
                 )

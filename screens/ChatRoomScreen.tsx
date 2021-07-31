@@ -12,34 +12,38 @@ import backgroundImg from "../assets/images/backgroundImg.png";
 import { useEffect } from "react";
 
 import { API, graphqlOperation } from "@aws-amplify/api";
-import { messagesByChatRoom } from '../src/graphql/queries'
+import { messagesByChatRoom } from '../src/graphql/queries';
+import { onCreateMessage } from '../src/graphql/subscriptions';
 import { useState } from "react";
 import { Auth } from "aws-amplify";
+
+
 
 const ChatRoomScreen = () => {
 
     const route = useRoute();
-    console.log(route.params.id);
     //get userinfo
     const [myId, setMyId] = useState(null);
-   
     //get message of chatroom
     const [messages, setMessages] = useState([]);
-    useEffect(() => {
-        const fetchMessages = async () => {
-          const messagesData = await API.graphql(
-            graphqlOperation(
-                messagesByChatRoom, {
-                    chatRoomID: route.params.id,
-                    sortDirection: "DESC",
-                }
-            )
+    
+    const fetchMessages = async () => {
+        const messagesData = await API.graphql(
+          graphqlOperation(
+            messagesByChatRoom, {
+              chatRoomID: route.params.id,
+              sortDirection: "DESC",
+            }
           )
-          setMessages(messagesData.data.messagesByChatRoom.items);
-        }
+        )
+    
+        console.log("FETCH MESSAGES")
+        setMessages(messagesData.data.messagesByChatRoom.items);
+      }
+    
+      useEffect(() => {
         fetchMessages();
-    }, [])
-
+      }, [])
 
     //
     useEffect(() => {
@@ -50,7 +54,25 @@ const ChatRoomScreen = () => {
         getMyId();
     }, [])
 
-
+    useEffect(() => {
+       const subscription = API.graphql(
+        graphqlOperation(onCreateMessage)  
+       ).subscribe({
+         next: (data) => {
+             const newMessage = data.value.data.onCreateMessage
+             console.log("-------------")
+             console.log(data.value);
+           /* if (newMessage.chatRoomID !== route.params.id) {
+                console.log("Message is in another room!")
+                 return;
+             }*/
+             fetchMessages();
+           //  setMessages([newMessage, ...messages]);
+             
+         }
+       });
+       return  () => subscription.unsubscribe();
+    }, [])
 
 
     return (
