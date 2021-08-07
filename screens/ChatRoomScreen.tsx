@@ -60,14 +60,13 @@ const ChatRoomScreen = () => {
        ).subscribe({
          next: (data) => {
              const newMessage = data.value.data.onCreateMessage
-             console.log("-------------")
-             console.log(data.value);
-           /* if (newMessage.chatRoomID !== route.params.id) {
+           
+             //if message !for us
+           if (newMessage.chatRoomID !== route.params.id) {
                 console.log("Message is in another room!")
                  return;
-             }*/
+             }
              fetchMessages();
-           //  setMessages([newMessage, ...messages]);
              
          }
        });
