@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity } from "react-native";
+import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
 import styles from "./styles";
 
 import { MaterialCommunityIcons, FontAwesome5, Entypo, Fontisto } from "@expo/vector-icons";
@@ -82,6 +82,12 @@ const InputBox = (props: { chatRoomID: string; }) => {
         }
     }
     return (
+        <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "position" : "height"}
+        keyboardVerticalOffset={100}
+        style={{ width: '100%'}}
+      >
+          
         <View style={styles.container}>
             <View style={styles.mainContainer}>
                 <FontAwesome5 name="laugh-beam" size={24} color="grey" />
@@ -104,6 +110,7 @@ const InputBox = (props: { chatRoomID: string; }) => {
                 </View>
             </TouchableOpacity>
         </View>
+        </KeyboardAvoidingView>
     )
 }
 

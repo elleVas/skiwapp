@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, SafeAreaView, View } from "react-native";
+import { ImageBackground, KeyboardAvoidingView, Platform, SafeAreaView, View } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { FlatList } from "react-native-gesture-handler";
 
@@ -59,8 +59,9 @@ const ChatRoomScreen = () => {
         graphqlOperation(onCreateMessage)  
        ).subscribe({
          next: (data) => {
+          // console.log(data.value);
              const newMessage = data.value.data.onCreateMessage
-           
+              console.log(newMessage);
              //if message !for us
            if (newMessage.chatRoomID !== route.params.id) {
                 console.log("Message is in another room!")
@@ -75,6 +76,7 @@ const ChatRoomScreen = () => {
 
 
     return (
+
         <ImageBackground
             style={{ width: '100%', height: '100%' }}
             source={backgroundImg}>
@@ -87,6 +89,7 @@ const ChatRoomScreen = () => {
             <InputBox chatRoomID={route.params.id} ></InputBox>
 
         </ImageBackground >
+     
 
     )
 }
