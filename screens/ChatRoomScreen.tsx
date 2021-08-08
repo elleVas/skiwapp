@@ -31,7 +31,7 @@ const ChatRoomScreen = () => {
         const messagesData = await API.graphql(
           graphqlOperation(
             messagesByChatRoom, {
-              chatRoomID: route.params.id,
+              chatRoomID: route.params?.id,
               sortDirection: "DESC",
             }
           )
@@ -58,12 +58,12 @@ const ChatRoomScreen = () => {
        const subscription = API.graphql(
         graphqlOperation(onCreateMessage)  
        ).subscribe({
-         next: (data) => {
+         next: (data: any) => {
           // console.log(data.value);
              const newMessage = data.value.data.onCreateMessage
               console.log(newMessage);
              //if message !for us
-           if (newMessage.chatRoomID !== route.params.id) {
+           if (newMessage.chatRoomID !== route.params?.id) {
                 console.log("Message is in another room!")
                  return;
              }
@@ -86,7 +86,7 @@ const ChatRoomScreen = () => {
                 inverted
             />
 
-            <InputBox chatRoomID={route.params.id} ></InputBox>
+            <InputBox chatRoomID={route.params?.id} ></InputBox>
 
         </ImageBackground >
      

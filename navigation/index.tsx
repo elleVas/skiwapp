@@ -76,17 +76,11 @@ function RootNavigator() {
         })}*/
         options={({ route }) => ({ 
          // title: route.params.name,
-         headerTitle: props => <LogoTitle {...route} />,
+         headerTitle: '',
          headerTitleAlign: 'center',
          //TODO CUSTOMIZE BTN BACK
-        /*  headerLeft: (props) => (
-            <HeaderBackButton
-              {...props}
-              onPress={() => {
-                // Do something
-              }}
-            />
-          ),*/
+         headerLeft: (props) => 
+            <LogoTitle {...route} />,
           headerRight: () =>(
             <View style={{
               backgroundColor: Colors.light.tint,
@@ -99,6 +93,10 @@ function RootNavigator() {
                <FontAwesome5 name="video" size={22} color={'white'}></FontAwesome5>
               <MaterialIcons name="call" size={22} color={'white'}></MaterialIcons>
               <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'}></MaterialCommunityIcons>
+            
+             
+
+            
             
             </View>
           )

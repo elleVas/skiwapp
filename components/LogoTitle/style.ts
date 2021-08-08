@@ -7,19 +7,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         width: 80,
         justifyContent: 'space-between',
-        marginRight: 10,
+       // marginRight: 30,
+        alignContent: "center"
     },
     avatarSmall: {
-        width: 30,
-        height: 30,
+        width: 40,
+        height: 40,
         borderRadius: 50,
        
     },
     username:{
         fontWeight: "bold",
-        fontSize: 16,
+        fontSize: 18,
         color:'white',
-        marginTop: 5,
+        marginTop: 10,
+        marginLeft: 5,
+        flexDirection: 'row',
       
         
     }

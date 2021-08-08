@@ -2,10 +2,7 @@
 import React, { useState } from "react";
 import { View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from "react-native";
 import styles from "./styles";
-
 import { MaterialCommunityIcons, FontAwesome5, Entypo, Fontisto } from "@expo/vector-icons";
-import { TouchableOpacityComponent } from "react-native";
-
 import { API, graphqlOperation } from "@aws-amplify/api";
 import { Auth } from '@aws-amplify/auth';
 import { createMessage, updateChatRoom } from "../../src/graphql/mutations";
@@ -83,7 +80,7 @@ const InputBox = (props: { chatRoomID: string; }) => {
     }
     return (
         <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "position" : "height"}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={100}
         style={{ width: '100%'}}
       >
