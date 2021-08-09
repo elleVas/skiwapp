@@ -8,6 +8,7 @@ import { Auth } from '@aws-amplify/auth';
 import { createMessage, updateChatRoom } from "../../src/graphql/mutations";
 import { useEffect } from "react";
 
+
 const InputBox = (props: { chatRoomID: string; }) => {
     const { chatRoomID } = props;
     const [message, setMessage] = useState('');
@@ -28,6 +29,11 @@ const InputBox = (props: { chatRoomID: string; }) => {
         //open microphone for message and record
         //after send vocal to backend
         console.warn('Microphone');
+    }
+    const onPressEmoji = () => {
+        //open emoji, and set message text box with emoji
+        console.warn('Emoji');
+       
     }
     //update chat room with last message
     const updateChatRoomLastMessage = async (messageID: string) => {
@@ -87,7 +93,8 @@ const InputBox = (props: { chatRoomID: string; }) => {
           
         <View style={styles.container}>
             <View style={styles.mainContainer}>
-                <FontAwesome5 name="laugh-beam" size={24} color="grey" />
+                <FontAwesome5 name="laugh-beam" size={24} color="grey"  onPress={onPressEmoji}/>
+               
                 <TextInput
                     placeholder={'Type a message'}
                     style={styles.textInput}
