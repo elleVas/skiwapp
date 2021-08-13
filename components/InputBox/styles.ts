@@ -17,6 +17,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'flex-end'
     },
+    emojiContainer: {
+        flexDirection: 'column',
+        height:300,
+        backgroundColor: 'white',
+        padding: 50,
+        borderRadius: 25,
+        marginRight: 50,
+        alignItems: 'flex-end'
+    },
     textInput: {
         flex: 1,
         marginHorizontal: 10,

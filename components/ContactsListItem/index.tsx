@@ -24,6 +24,7 @@ const ContactListItem = (props: ContactListItemProps) => {
             let checkUserChat = false;
             let chatRoomID = "";
             let chatName = "";
+            let chatImgName = "";
             //create or navigate to the chat room if exist
             // TODO 0 check if chat room exist
             //get all chat room of logged user
@@ -51,6 +52,8 @@ const ContactListItem = (props: ContactListItemProps) => {
                         checkUserChat = true;
                         chatName = element.user.name;
                         chatRoomID = element.chatRoomID;
+                        //NB to change when implement chatroom groups
+                        chatImgName = element.user.imageUri;
                     }
                 });
             });
@@ -60,7 +63,8 @@ const ContactListItem = (props: ContactListItemProps) => {
                 //redirect to chat room exist
                 navigation.navigate('ChatRoom', {
                     id: chatRoomID,
-                    name: chatName
+                    name: chatName,
+                    img: chatImgName
                 })
             } else {
                 //if not exist create new chat room
@@ -87,7 +91,8 @@ const ContactListItem = (props: ContactListItemProps) => {
                         createChatRoomUser, {
                         input: {
                             userID: user.id,
-                            chatRoomID: newChatRoom.id
+                            chatRoomID: newChatRoom.id,
+                            
                         }
 
 
@@ -111,7 +116,8 @@ const ContactListItem = (props: ContactListItemProps) => {
                 console.log("chatroom created");
                 navigation.navigate('ChatRoom', {
                     id: newChatRoom.id,
-                    name: "Hardcoded name"
+                    name: "Hardcoded name",
+                    
                 })
 
             }

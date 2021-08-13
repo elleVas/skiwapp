@@ -21,6 +21,7 @@ export const getUser = /* GraphQL */ `
                user{
                  id
                  name
+                 imageUri
                }
              }
            }
