@@ -27,23 +27,50 @@ const ChatRoomScreen = () => {
     //get message of chatroom
     const [messages, setMessages] = useState([]);
     
+    const [nextToken, setNextToken] = useState(undefined);
+    const [nextNextToken, setNextNextToken] = useState();
+    const [previousTokens, setPreviousTokens] = useState([]);
+
+/*
+    useEffect(() => {
+      const fetch = async () => {
+        const variables = {
+          nextToken,
+          owner,
+          limit,
+          sortDirection,
+        }
+        const result = await API.graphql(graphqlOperation(listTodosByDate, variables))
+        setNextNextToken(result.data.listTodosByDate.nextToken)
+        setTodos(result.data.listTodosByDate.items)
+      }
+    
+      fetch()
+    }, [nextToken, owner, sortDirection])*/
+
+
     const fetchMessages = async () => {
         const messagesData = await API.graphql(
           graphqlOperation(
             messagesByChatRoom, {
+             limit: 10,
+             nextToken: nextToken,
               chatRoomID: route.params?.id,
               sortDirection: "DESC",
             }
           )
         )
-    
-        console.log("FETCH MESSAGES")
+        console.log("==========================================================")
+       // nextToken = messagesData.data.messagesByChatRoom.nextToken;
+        console.log("FETCH MESSAGES", messagesData.data.messagesByChatRoom.nextToken)
+        console.log("==========================================================")
+        setNextNextToken(messagesData.data.messagesByChatRoom.nextToken)
         setMessages(messagesData.data.messagesByChatRoom.items);
       }
     
       useEffect(() => {
         fetchMessages();
-      }, [])
+      }, [nextToken])
 
     //
     useEffect(() => {
@@ -74,7 +101,7 @@ const ChatRoomScreen = () => {
        return  () => subscription.unsubscribe();
     }, [])
 
-
+    let keyExtractor = (nextToken: any) => nextToken;
     return (
 
         <ImageBackground
@@ -83,7 +110,26 @@ const ChatRoomScreen = () => {
             <FlatList
                 data={messages}
                 renderItem={({ item }) => <ChatMessage myId={myId} message={item} />}
+                keyExtractor={item => item.id}
+                onEndReached={() => {
+                 if (messages.nextToken === null) return;
+                 /* setIsLoading(true);
+                  // When the end is reached we fetch the next batch of messages if they exist
+                  getChannelMessages(channelId, messages.nextToken).then(
+                    ({ messages }) => {
+                      setIsLoading(false);
+                      dispatch({
+                        type: "append-messages",
+                        payload: { channelId, messages }
+                      });
+                    }
+                  );*/
+                }}
                 inverted
+                onScroll={({ nativeEvent }) => {
+                 // fetchMessages()
+                }}
+                scrollEventThrottle={10000}
             />
 
             <InputBox chatRoomID={route.params?.id} ></InputBox>
